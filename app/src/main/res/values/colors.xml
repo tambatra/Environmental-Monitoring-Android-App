@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="colorPrimary">#006064</color>
+    <color name="colorPrimaryDark">#182828</color>
+    <color name="colorAccent">#fe3c00</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="colorPrimary1">#2a4d53</color>
+    <color name="colorText">#FFFFFF</color>-->
+
+    <color name="colorPrimary">#00796B</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#88094D</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="colorPrimary1">#FFFFFF</color>
+    <color name="colorText">#000000</color>
+    <color name="colorProgessBarBackground">#D6D2D2</color>
+    <color name="colorProgessBar">#2BA634</color>
+    <color name="colorProgessBar1">#07F418</color>
+    <color name="colorProgessBar2">#FFA000</color>
+    <color name="colorProgessBar3">#E64A19</color>
+
+    <color name="colorGreen">#1B5E20</color>
+    <color name="colorYelow">#FFA000</color>
+    <color name="colorRed">#B71C1C</color>
+
+    <color name="colorAirQuality">#0288D1</color>
+    <color name="colorHumidity">#FFA000</color>
+    <color name="colorTemperature">#C2185B</color>
+    <color name="colorRadiation">#7B1FA2</color>
+
+</resources>

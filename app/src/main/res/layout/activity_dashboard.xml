@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="com.example.fullscreenenvironmentmonitoring.utils.StringUtils"/>
+        <variable
+            name="viewmodel"
+            type="com.example.fullscreenenvironmentmonitoring.ui.dashboard.DashboardViewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="0dp"
+        app:cardBackgroundColor="@color/colorPrimary1"
+        app:shapeAppearance="@style/AppTheme.base"
+        tools:context=".ui.dashboard.DashboardActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:isScrollContainer="true"
+            android:scrollbars="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
+                app:cardBackgroundColor="@color/colorPrimary1"
+                app:layout_constraintBottom_toTopOf="@+id/card1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/AppTheme.status">
+
+                <TextView
+                    android:id="@+id/tvStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:fontFamily="serif"
+                    android:padding="4dp"
+                    android:text="@{viewmodel.isConnected()}"
+                    android:textColor="@color/colorText"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
+                app:cardBackgroundColor="@color/colorPrimary1"
+                app:layout_constraintBottom_toTopOf="@+id/card2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardStatus">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:id="@+id/tvTemp1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="serif"
+                        android:text="@{StringUtils.INSTANCE.toString(viewmodel.paramZone1.temperature, true)}"
+                        android:textColor="@color/colorText"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toTopOf="@+id/tvHum1"
+                        app:layout_constraintEnd_toStartOf="@+id/tempImage1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="35°C" />
+
+                    <TextView
+                        android:id="@+id/tvAirQ1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="58dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="serif"
+                        android:text="@{StringUtils.INSTANCE.toString(viewmodel.paramZone1.airQuality)}"
+                        android:textColor="@color/colorText"
+                        android:textSize="52sp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone1"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/zone1"
+                        tools:text="456" />
+
+                    <TextView
+                        android:id="@+id/ppm1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="serif-monospace"
+                        android:text="ppm "
+                        android:textColor="@color/colorText"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/tvAirQ1"
+                        app:layout_constraintTop_toTopOf="@+id/tvAirQ1" />
+
+                    <TextView
+                        android:id="@+id/tvHum1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="serif"
+                        android:text="@{StringUtils.INSTANCE.toString(viewmodel.paramZone1.humidity, false)}"
+                        android:textColor="@color/colorText"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone1"
+                        app:layout_constraintEnd_toStartOf="@+id/humImag1"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTemp1"
+                        tools:text="58.4%" />
+
+                    <ImageView
+                        android:id="@+id/co2Imag1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone1"
+                        app:layout_constraintStart_toEndOf="@+id/tvAirQ1"
+                        app:layout_constraintTop_toBottomOf="@+id/zone1"
+                        app:srcCompat="@drawable/ic_cloud"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <ImageView
+                        android:id="@+id/tempImage1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/humImag1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_thermometer"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <ImageView
+                        android:id="@+id/humImag1"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tempImage1"
+                        app:srcCompat="@drawable/ic_humidity"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:id="@+id/zone1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="serif"
+                        android:text="Zone 1"
+                        android:textColor="@color/colorText"
+                        app:layout_constraintStart_toEndOf="@+id/tvGraph1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/tvGraph1"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_statistics"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBarZone1"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:max="2000"
+                        android:progress="@{viewmodel.progressBar1}"
+                        android:progressDrawable="@drawable/progressbarmask"
+                        android:rotation="180"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
+                app:cardBackgroundColor="@color/colorPrimary1"
+                app:layout_constraintBottom_toTopOf="@+id/card3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="14dp">
+
+                    <ProgressBar
+                        android:id="@+id/progressBarZone2"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:max="2000"
+                        android:progress="@{viewmodel.progressBar2}"
+                        android:progressDrawable="@drawable/progressbarmask"
+                        android:rotation="180"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/tvGraph2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_statistics"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:id="@+id/tvTemp2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="serif"
+                        android:text="@{StringUtils.INSTANCE.toString(viewmodel.paramZone2.temperature, true)}"
+                        android:textColor="@color/colorText"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toTopOf="@+id/tvHum2"
+                        app:layout_constraintEnd_toStartOf="@+id/tempImage2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="12.5°C" />
+
+                    <TextView
+                        android:id="@+id/tvAirQ2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="58dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="serif"
+                        android:text="@{StringUtils.INSTANCE.toString(viewmodel.paramZone2.airQuality)}"
+                        android:textColor="@color/colorText"
+                        android:textSize="52sp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/zone2"
+                        tools:text="254" />
+
+                    <TextView
+                        android:id="@+id/ppm2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="serif-monospace"
+                        android:text="ppm "
+                        android:textColor="@color/colorText"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/tvAirQ2"
+                        app:layout_constraintTop_toTopOf="@+id/tvAirQ2" />
+
+                    <TextView
+                        android:id="@+id/tvHum2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="serif"
+                        android:text="@{StringUtils.INSTANCE.toString(viewmodel.paramZone2.humidity, false)}"
+                        android:textColor="@color/colorText"
+                        android:textSize="28sp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone2"
+                        app:layout_constraintEnd_toStartOf="@+id/humImag2"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTemp2"
+                        tools:text="56%" />
+
+                    <ImageView
+                        android:id="@+id/co2Imag2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone2"
+                        app:layout_constraintStart_toEndOf="@+id/tvAirQ2"
+                        app:layout_constraintTop_toBottomOf="@+id/zone2"
+                        app:srcCompat="@drawable/ic_cloud"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <ImageView
+                        android:id="@+id/tempImage2"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/humImag2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_thermometer"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <ImageView
+                        android:id="@+id/humImag2"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tempImage2"
+                        app:srcCompat="@drawable/ic_humidity"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:id="@+id/zone2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="serif"
+                        android:text="Zone 2"
+                        android:textColor="@color/colorText"
+                        app:layout_constraintStart_toEndOf="@+id/tvGraph2"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="2dp"
+                app:cardBackgroundColor="@color/colorPrimary1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card2"
+                app:shapeAppearance="@style/AppTheme.bottom">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="14dp">
+
+                    <ProgressBar
+                        android:id="@+id/progressBarZone3"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="14dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:max="500"
+                        android:progress="@{viewmodel.progressBar3}"
+                        android:progressDrawable="@drawable/progressbarmask"
+                        android:rotation="180"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/tvGraph3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:clickable="true"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_statistics"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:id="@+id/cpm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="serif-monospace"
+                        android:text="cpm "
+                        android:textColor="@color/colorText"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/tvRadiation"
+                        app:layout_constraintTop_toTopOf="@+id/tvRadiation" />
+
+                    <TextView
+                        android:id="@+id/ppm3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="serif-monospace"
+                        android:text="ppm "
+                        android:textColor="@color/colorText"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="@+id/tvAirQ3"
+                        app:layout_constraintTop_toTopOf="@+id/tvAirQ3" />
+
+                    <TextView
+                        android:id="@+id/zone3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="serif"
+                        android:text="Zone 3"
+                        android:textColor="@color/colorText"
+                        app:layout_constraintStart_toEndOf="@+id/tvGraph3"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/co2Img3"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone3"
+                        app:layout_constraintStart_toEndOf="@+id/tvAirQ3"
+                        app:layout_constraintTop_toBottomOf="@+id/zone3"
+                        app:srcCompat="@drawable/ic_cloud"
+                        tools:ignore="VectorDrawableCompat" />
+
+                    <TextView
+                        android:id="@+id/tvAirQ3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="serif"
+                        android:text="@{StringUtils.INSTANCE.toString(viewmodel.paramZone3.airQuality)}"
+                        android:textColor="@color/colorText"
+                        android:textSize="52sp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/zone3"
+                        tools:text="254" />
+
+                    <TextView
+                        android:id="@+id/tvRadiation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="58dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="serif"
+                        android:text="@{StringUtils.INSTANCE.toString(viewmodel.paramZone3.radiation)}"
+                        android:textColor="@color/colorText"
+                        android:textSize="52sp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone3"
+                        app:layout_constraintEnd_toStartOf="@+id/radImag"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="452" />
+
+                    <ImageView
+                        android:id="@+id/radImag"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:layout_constraintBottom_toTopOf="@+id/progressBarZone3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_nuclear"
+                        tools:ignore="VectorDrawableCompat" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Environment monitoring</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
+    <string name="server_ip">environmentmonitoringappserver_ip</string>
+    <string name="temperature_min">environmentmonitoringapptemperature_min</string>
+    <string name="temperature_max">environmentmonitoringapptemperature_max</string>
+    <string name="humidity_min">environmentmonitoringapphumidity_min</string>
+    <string name="humidity_max">environmentmonitoringapphumidity_max</string>
+    <string name="air_quality_min">environmentmonitoringappair_quality_min</string>
+    <string name="air_quality_max">environmentmonitoringappair_quality_max</string>
+    <string name="radiation_min">environmentmonitoringappradiation_min</string>
+    <string name="radiation_max">environmentmonitoringappradiation_max</string>
+</resources>
