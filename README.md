@@ -7,3 +7,7 @@ Sensor data are presented in real-time. User can also visualize historical data 
 
 Here is the screenshot of the differents Android UI screen
 ![Image1](https://user-images.githubusercontent.com/23704606/147907432-4559b731-3aba-4477-83f0-477bc79bf701.png)
+
+Codes and schematic related to wireless sensors (esp8266 based) can be found here:
+https://github.com/tambatra/esp8266-Environmental-Monitoring
+
